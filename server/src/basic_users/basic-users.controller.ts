@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Controller,
   Get,
@@ -7,6 +8,10 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+=======
+
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+>>>>>>> dee020c67caf836eeefae34542e801eda7e45c2f
 import { BasicUsersService } from './basic-users.service';
 import { CreateBasicUsersDto } from './dto/create-basic-users.dto';
 import { UpdateBasicUsersDto } from './dto/update-basic-users.dto';
@@ -39,4 +44,8 @@ export class BasicUsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dee020c67caf836eeefae34542e801eda7e45c2f
