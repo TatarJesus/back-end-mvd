@@ -25,12 +25,12 @@ import { FavouritesModule } from './favourites/favourites.module';
     CategoryClosureModule,
     ContentModule,
     DesignersModule,
+    FavouritesModule,
     ProducersModule,
     ProducersCategoriesModule,
     RolesModule,
     SecretsModule,
     StarredProducersModule,
-    FavouritesModule,
 
     // Инициализация глобального модуля конфигурации
     ConfigModule.forRoot({ isGlobal: true }),
@@ -55,8 +55,6 @@ import { FavouritesModule } from './favourites/favourites.module';
       // Внедрение зависимости ConfigService для доступа к переменным окружения
       inject: [ConfigService],
     }),
-
-    FavouritesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

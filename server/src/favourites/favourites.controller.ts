@@ -11,13 +11,13 @@ export class FavouritesController {
     return this.favouritesService.create(createFavouriteDto);
   }
 
-  @Get()
-  findAll() {
-    return this.favouritesService.findAll();
+  @Get(':id')
+  findAll(@Param('id') id: string) {
+    return this.favouritesService.findAll(+id);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.favouritesService.remove(+id);
+  @Delete('/:user_id/:producer_id')
+  remove(@Param('user_id') user_id: string, @Param('producer_id') producer_id: string) {
+    return this.favouritesService.remove(+user_id, +producer_id);
   }
 }

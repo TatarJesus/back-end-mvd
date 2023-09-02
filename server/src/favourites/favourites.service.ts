@@ -8,18 +8,29 @@ import { Favourite } from './entities/favourite.entity';
 export class FavouritesService {
   constructor(
     @InjectRepository(Favourite)
-    private usersRepository: Repository<Favourite>,
+    private favouriteRepository: Repository<Favourite>,
   ) {}
-  create(createFavouriteDto: CreateFavouriteDto) {
-    const user = this.usersRepository.create(createFavouriteDto);
-    return this.usersRepository.save(user);
+
+  async create(createFavouriteDto: CreateFavouriteDto) {
+    const user = this.favouriteRepository.create(createFavouriteDto);
+    return await this.favouriteRepository.save(user);
   }
 
-  findAll() {
-    return this.usersRepository.find();
+  async findAll(id: number) {
+    return await this.favouriteRepository.find({ where: { user_id: id } });
   }
 
-  remove(id: number) {
-    return this.usersRepository.delete(id);
+  async findOne(user_id: number, producer_id: number): Promise<Favourite> {
+    return await this.favouriteRepository.findOne({
+      where: {
+        user_id: user_id,
+        producer_id: producer_id,
+      },
+    });
+  }
+
+  async remove(user_id: number, producer_id: number): Promise<void> {
+    const favourite = await this.findOne(user_id, producer_id);
+    await this.favouriteRepository.delete(favourite);
   }
 }
