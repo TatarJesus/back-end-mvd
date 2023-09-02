@@ -14,11 +14,11 @@ import { ProducersCategoriesModule } from './producers_categories/producers-cate
 import { RolesModule } from './roles/roles.module';
 import { SecretsModule } from './secrets/secrets.module';
 import { StarredProducersModule } from './starred_producers/starred-producers.module';
+import { FavouritesModule } from './favourites/favourites.module';
 
 @Module({
   imports: [
     // Импорт других модулей приложения
-    AdminsModule,
     AdminsModule,
     BasicUsersModule,
     CategoriesModule,
@@ -30,6 +30,7 @@ import { StarredProducersModule } from './starred_producers/starred-producers.mo
     RolesModule,
     SecretsModule,
     StarredProducersModule,
+    FavouritesModule,
 
     // Инициализация глобального модуля конфигурации
     ConfigModule.forRoot({ isGlobal: true }),
@@ -54,6 +55,8 @@ import { StarredProducersModule } from './starred_producers/starred-producers.mo
       // Внедрение зависимости ConfigService для доступа к переменным окружения
       inject: [ConfigService],
     }),
+
+    FavouritesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

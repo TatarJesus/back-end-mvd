@@ -22,7 +22,7 @@ export class ContentService {
   }
 
   findOne(id: number) {
-    return this.contentRepository.findOne(id);
+    return this.contentRepository.findOne({ where: { id: id } });
   }
 
   update(id: number, updateContentDto: UpdateContentDTO) {

@@ -22,14 +22,19 @@ export class ProducersCategoriesService {
   }
 
   async findOne(id: number): Promise<ProducerCategory> {
-    const found = await this.producerCategoryRepository.findOne(id);
+    const found = await this.producerCategoryRepository.findOne({
+      where: { id: id },
+    });
     if (!found) {
       throw new NotFoundException(`ProducerCategory with id ${id} not found`);
     }
     return found;
   }
 
-  async update(id: number, updateDto: UpdateProducerCategoryDto): Promise<ProducerCategory> {
+  async update(
+    id: number,
+    updateDto: UpdateProducerCategoryDto,
+  ): Promise<ProducerCategory> {
     const category = await this.findOne(id);
     const updatedCategory = Object.assign(category, updateDto);
     return await this.producerCategoryRepository.save(updatedCategory);

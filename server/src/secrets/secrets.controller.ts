@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   Controller,
   Get,
@@ -8,9 +7,6 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-=======
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
->>>>>>> dee020c67caf836eeefae34542e801eda7e45c2f
 import { SecretsService } from './secrets.service';
 import { CreateSecretsDto } from './dto/create-secrets.dto';
 import { UpdateSecretsDto } from './dto/update-secrets.dto';
@@ -43,8 +39,4 @@ export class SecretsController {
   remove(@Param('id') id: string) {
     return this.secretsService.remove(+id);
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> dee020c67caf836eeefae34542e801eda7e45c2f

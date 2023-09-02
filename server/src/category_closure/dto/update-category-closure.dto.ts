@@ -1,4 +1,3 @@
 export class UpdateCategoryClosureDto {
-    depth: number;
-  }
-  
+  depth: number;
+}

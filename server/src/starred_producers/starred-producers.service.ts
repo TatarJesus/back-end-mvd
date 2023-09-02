@@ -13,7 +13,9 @@ export class StarredProducersService {
   ) {}
 
   create(createStarredProducersDto: CreateStarredProducersDto) {
-    const starredProducer = this.starredProducersRepository.create(createStarredProducersDto);
+    const starredProducer = this.starredProducersRepository.create(
+      createStarredProducersDto,
+    );
     return this.starredProducersRepository.save(starredProducer);
   }
 
@@ -22,11 +24,14 @@ export class StarredProducersService {
   }
 
   findOne(id: number) {
-    return this.starredProducersRepository.findOne(id);
+    return this.starredProducersRepository.findOne({ where: { id: id } });
   }
 
   update(id: number, updateStarredProducersDto: UpdateStarredProducersDto) {
-    return this.starredProducersRepository.update(id, updateStarredProducersDto);
+    return this.starredProducersRepository.update(
+      id,
+      updateStarredProducersDto,
+    );
   }
 
   remove(id: number) {

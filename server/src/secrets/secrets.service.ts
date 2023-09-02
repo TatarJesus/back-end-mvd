@@ -22,7 +22,7 @@ export class SecretsService {
   }
 
   findOne(id: number) {
-    return this.secretsRepository.findOne(id);
+    return this.secretsRepository.findOne({ where: { id: id } });
   }
 
   update(id: number, updateSecretDto: UpdateSecretsDto) {

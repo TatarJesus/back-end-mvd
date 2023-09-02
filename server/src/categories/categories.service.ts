@@ -22,7 +22,7 @@ export class CategoriesService {
   }
 
   findOne(id: number) {
-    return this.categoriesRepository.findOne(id);
+    return this.categoriesRepository.findOne({ where: { id: id } });
   }
 
   update(id: number, updateCategoryDto: UpdateCategoryDTO) {

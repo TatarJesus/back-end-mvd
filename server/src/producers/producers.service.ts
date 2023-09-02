@@ -12,28 +12,28 @@ export class ProducersService {
     private producersRepository: Repository<Producers>,
   ) {}
 
-  // Создание нового продюсера
+  // Создание нового производителя
   create(createProducersDto: CreateProducersDto) {
     const producer = this.producersRepository.create(createProducersDto);
     return this.producersRepository.save(producer);
   }
 
-  // Поиск всех продюсеров
+  // Поиск всех производителей
   findAll() {
     return this.producersRepository.find();
   }
 
-  // Поиск одного продюсера по ID
+  // Поиск одного производителя по ID
   findOne(id: number) {
-    return this.producersRepository.findOne(id);
+    return this.producersRepository.findOne({ where: { id: id } });
   }
 
-  // Обновление продюсера
+  // Обновление производителя
   update(id: number, updateProducersDto: UpdateProducersDto) {
     return this.producersRepository.update(id, updateProducersDto);
   }
 
-  // Удаление продюсера
+  // Удаление производителя
   remove(id: number) {
     return this.producersRepository.delete(id);
   }

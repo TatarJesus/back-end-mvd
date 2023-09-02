@@ -22,14 +22,19 @@ export class DesignersService {
   }
 
   async findOne(id: number): Promise<Designers> {
-    const designer = await this.designersRepository.findOne(id);
+    const designer = await this.designersRepository.findOne({
+      where: { id: id },
+    });
     if (!designer) {
       throw new NotFoundException(`Designer with id ${id} not found`);
     }
     return designer;
   }
 
-  async update(id: number, updateDesignersDto: UpdateDesignersDto): Promise<Designers> {
+  async update(
+    id: number,
+    updateDesignersDto: UpdateDesignersDto,
+  ): Promise<Designers> {
     await this.findOne(id);
     await this.designersRepository.update(id, updateDesignersDto);
     return this.findOne(id);

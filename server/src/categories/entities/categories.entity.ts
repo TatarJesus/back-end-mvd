@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { ProducersCategories } from '../../producers_categories/entities/producers-categories.entity'; 
+import { ProducerCategory } from '../../producers_categories/entities/producer-category.entity';
 
 @Entity('categories')
 export class Category {
@@ -9,6 +9,6 @@ export class Category {
   @Column({ unique: true })
   name: string;
 
-  @OneToMany(() => ProducersCategories, (pc) => pc.category)
-  producerCategories: ProducersCategories[];
+  @OneToMany(() => ProducerCategory, (pc) => pc.id)
+  producerCategories: ProducerCategory[];
 }

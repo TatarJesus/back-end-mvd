@@ -1,4 +1,3 @@
 export class UpdateCategoryDTO {
-    name?: string;
-  }
-  
+  name?: string;
+}
