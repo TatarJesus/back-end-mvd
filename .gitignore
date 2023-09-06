@@ -3,7 +3,7 @@
 /node_modules
 
 # Logs
-logs
+/logs
 *.log
 npm-debug.log*
 pnpm-debug.log*
@@ -11,7 +11,7 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# OS
+# OS specific
 .DS_Store
 
 # Tests
@@ -20,6 +20,8 @@ lerna-debug.log*
 
 # IDEs and editors
 /.idea
+.idea
+.vscode/*
 .project
 .classpath
 .c9/
@@ -27,9 +29,19 @@ lerna-debug.log*
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Environment variables
+.env
+
+# NestJS specific (You can add these if your NestJS app uses them)
+.env.test
+.env.development
+.env.staging
+
+# NestJS - TypeORM
+ormconfig.json
+ormconfig.dev.json
+
+# Other
+*.tmp
+*.swp
+*.swo

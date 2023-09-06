@@ -1,46 +1,44 @@
-# vim: set ft=dockerfile:
-# Dockerfile - Docker markup language version x.0
-# Encoding: UTF-8
-
-# Этап сборки
+# Use a specific version of the node image for reproducibility
 FROM node:18.16.1 AS builder
 
+# Set the working directory inside the container
 WORKDIR /usr/src/app
 
+# Copy only the package.json and package-lock.json first to leverage Docker cache
+# This ensures that npm install is only run when these files change
 COPY package*.json ./
 
-# Устанавливаем зависимости
+# Using the official registry to ensure stability
+RUN npm set registry https://registry.npmjs.org/ 
 RUN npm install
 
+# Copy the rest of the application
 COPY . .
 
-# Собираем проект
+# Build the application for production
 RUN npm run build
 
-# Этап запуска
+# Start a new stage to reduce image size
 FROM node:18.16.1
 
-# Создаем пользователя и группу для безопасности
-RUN groupadd -r nestjs && useradd -r -s /bin/false -g nestjs nestjs
-
-# Устанавливаем рабочую директорию и права доступа
+# Set the working directory in the new stage
 WORKDIR /usr/app
 
+# Copy only necessary files from the previous stage
 COPY --from=builder /usr/src/app/dist ./dist
 COPY package*.json ./
 
-# Установите только продакшен-зависимости
+# Install only production dependencies to reduce image size
 RUN npm install --production
 
-# Переключитесь на пользователя nestjs для безопасности
-USER nestjs
-
-# Метки согласно спецификации OCI
-LABEL org.opencontainers.image.title="NestJS Application" \
-      org.opencontainers.image.description="A Dockerized NestJS application" \
+# Metadata as defined by OCI (Open Container Initiative) spec
+LABEL org.opencontainers.image.title="MvD NestJS API" \
+      org.opencontainers.image.description="A Dockerized Mebel v Dom NestJS API" \
       org.opencontainers.image.version="1.0.0" \
-      org.opencontainers.image.authors="YourName <your.email@example.com>"
+      org.opencontainers.image.authors="TatarJesus, MxPanf <mxpanf@proton.me>"
 
-EXPOSE 8000
+# Expose port 8001 to be mapped by the docker daemon
+EXPOSE 8001
 
-CMD ["npm", "start"]
+# Define the command to run the app when the docker container starts
+CMD ["npm", "run", "start:prod"]
