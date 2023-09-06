@@ -35,7 +35,7 @@ RUN npm install --production
 LABEL org.opencontainers.image.title="MvD NestJS API" \
       org.opencontainers.image.description="A Dockerized Mebel v Dom NestJS API" \
       org.opencontainers.image.version="1.0.0" \
-      org.opencontainers.image.authors="TatarJesus, MxPanf <qrysp@proton.me>"
+      org.opencontainers.image.authors="TatarJesus, MxPanf <mxpanf@proton.me>"
 
 # Expose port 8001 to be mapped by the docker daemon
 EXPOSE 8001
