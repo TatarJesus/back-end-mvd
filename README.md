@@ -1,4 +1,4 @@
-# My NestJS Project
+# Mebel v Dom NestJS Project
 
 This repository contains the codebase for a NestJS-based backend application. The application is containerized using Docker for easy setup and deployment.
 
