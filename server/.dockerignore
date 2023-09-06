@@ -1,3 +1,35 @@
-node_modules/
+# Node
+node_modules
 npm-debug.log
+yarn-error.log
+yarn-debug.log
+*.pnp
+.pnp.js
+
+# Build
+/dist
+
+# Environment & Config
+.env
+*.config.ts
+*.config.js
+
+# OS specific
+.DS_Store
+
+# IDEs and editors
+.idea
+.vscode
+*.sublime-workspace
+
+# Logs
 *.log
+
+# Tests
+/coverage
+.nyc_output
+
+# Other
+*.tmp
+*.swp
+*.swo
