@@ -11,26 +11,32 @@ export class CategoryCardsService {
     @InjectRepository(CategoryCard)
     private categoryCardRepository: Repository<CategoryCard>,
   ) {}
-  create(createCategoryCardDto: CreateCategoryCardDto) {
+
+  // Создание товара
+  async create(createCategoryCardDto: CreateCategoryCardDto) {
     const categoryCard = this.categoryCardRepository.create(
       createCategoryCardDto,
     );
-    return this.categoryCardRepository.save(categoryCard);
+    return await this.categoryCardRepository.save(categoryCard);
   }
 
-  findAll() {
-    return this.categoryCardRepository.find();
+  // Поиск всех товаров
+  async findAll() {
+    return await this.categoryCardRepository.find();
   }
 
-  findOne(id: number) {
-    return this.categoryCardRepository.findOne({ where: { id: id } });
+  // Поиск определенного товара
+  async findOne(id: number) {
+    return await this.categoryCardRepository.findOne({ where: { id: id } });
   }
 
-  update(id: number, updateCategoryCardDto: UpdateCategoryCardDto) {
-    return this.categoryCardRepository.update(id, updateCategoryCardDto);
+  // Обновление определенного товара
+  async update(id: number, updateCategoryCardDto: UpdateCategoryCardDto) {
+    return await this.categoryCardRepository.update(id, updateCategoryCardDto);
   }
 
-  remove(id: number) {
-    return this.categoryCardRepository.delete(id);
+  // Удаление определенного товара
+  async remove(id: number) {
+    return await this.categoryCardRepository.delete(id);
   }
 }

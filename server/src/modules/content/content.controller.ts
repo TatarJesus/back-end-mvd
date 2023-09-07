@@ -30,6 +30,21 @@ export class ContentController {
     return this.contentService.findOne(+id);
   }
 
+  @Get('/news')
+  findAllNews() {
+    return this.contentService.findAllNews();
+  }
+
+  @Get('/article')
+  findAllArticle() {
+    return this.contentService.findAllArticle();
+  }
+
+  @Get('/promo')
+  findAllPromo() {
+    return this.contentService.findAllPromo();
+  }
+
   @Put(':id')
   update(@Param('id') id: string, @Body() updateContentDto: UpdateContentDTO) {
     return this.contentService.update(+id, updateContentDto);

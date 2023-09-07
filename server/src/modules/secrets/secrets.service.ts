@@ -12,24 +12,29 @@ export class SecretsService {
     private secretsRepository: Repository<Secrets>,
   ) {}
 
-  create(createSecretDto: CreateSecretsDto) {
+  // Добавление пароля
+  async create(createSecretDto: CreateSecretsDto) {
     const secret = this.secretsRepository.create(createSecretDto);
-    return this.secretsRepository.save(secret);
+    return await this.secretsRepository.save(secret);
   }
 
-  findAll() {
-    return this.secretsRepository.find();
+  // Поиск всех паролей
+  async findAll() {
+    return await this.secretsRepository.find();
   }
 
-  findOne(id: number) {
-    return this.secretsRepository.findOne({ where: { id: id } });
+  // Поиск определенного пароля
+  async findOne(id: number) {
+    return await this.secretsRepository.findOne({ where: { id: id } });
   }
 
-  update(id: number, updateSecretDto: UpdateSecretsDto) {
-    return this.secretsRepository.update(id, updateSecretDto);
+  // Обновление определенного пароля
+  async update(id: number, updateSecretDto: UpdateSecretsDto) {
+    return await this.secretsRepository.update(id, updateSecretDto);
   }
 
-  remove(id: number) {
-    return this.secretsRepository.delete(id);
+  // Удаление определенного пароля
+  async remove(id: number) {
+    return await this.secretsRepository.delete(id);
   }
 }

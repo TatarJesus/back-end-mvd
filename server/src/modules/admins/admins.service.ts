@@ -1,26 +1,40 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAdminsDto } from './dto/create-admins.dto';
 import { UpdateAdminsDto } from './dto/update-admins.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Admins } from './entities/admins.entity';
 
 @Injectable()
 export class AdminsService {
-  create(createAdminsDto: CreateAdminsDto) {
-    return 'This action adds a new user';
+  constructor(
+    @InjectRepository(Admins)
+    private adminsRepository: Repository<Admins>,
+  ) {}
+
+  // Создание пользователя администратора
+  async create(createAdminsDto: CreateAdminsDto) {
+    const admin = this.adminsRepository.create(createAdminsDto);
+    return await this.adminsRepository.save(admin);
   }
 
-  findAll() {
-    return `This action returns all user`;
+  // Поиск всех пользователей администраторов
+  async findAll() {
+    return await this.adminsRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  // Поиск определенного пользователя администратора
+  async findOne(id: number) {
+    return await this.adminsRepository.find({ where: { id: id } });
   }
 
-  update(id: number, updateAdminsDto: UpdateAdminsDto) {
-    return `This action updates a #${id} user`;
+  // Обновление данных определенного пользователя администратора
+  async update(id: number, updateAdminsDto: UpdateAdminsDto) {
+    return await this.adminsRepository.update(id, updateAdminsDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  // Удаление определенного пользователя администратора
+  async remove(id: number) {
+    return await this.adminsRepository.delete(id);
   }
 }

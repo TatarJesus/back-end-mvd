@@ -12,29 +12,32 @@ export class StarredProducersService {
     private starredProducersRepository: Repository<StarredProducers>,
   ) {}
 
-  create(createStarredProducersDto: CreateStarredProducersDto) {
+  async create(createStarredProducersDto: CreateStarredProducersDto) {
     const starredProducer = this.starredProducersRepository.create(
       createStarredProducersDto,
     );
-    return this.starredProducersRepository.save(starredProducer);
+    return await this.starredProducersRepository.save(starredProducer);
   }
 
-  findAll() {
-    return this.starredProducersRepository.find();
+  async findAll() {
+    return await this.starredProducersRepository.find();
   }
 
-  findOne(id: number) {
-    return this.starredProducersRepository.findOne({ where: { id: id } });
+  async findOne(id: number) {
+    return await this.starredProducersRepository.findOne({ where: { id: id } });
   }
 
-  update(id: number, updateStarredProducersDto: UpdateStarredProducersDto) {
-    return this.starredProducersRepository.update(
+  async update(
+    id: number,
+    updateStarredProducersDto: UpdateStarredProducersDto,
+  ) {
+    return await this.starredProducersRepository.update(
       id,
       updateStarredProducersDto,
     );
   }
 
-  remove(id: number) {
-    return this.starredProducersRepository.delete(id);
+  async remove(id: number) {
+    return await this.starredProducersRepository.delete(id);
   }
 }

@@ -12,6 +12,7 @@ export class ProducersCategoriesService {
     private readonly producerCategoryRepository: Repository<ProducerCategory>,
   ) {}
 
+  // Добавление избранного производителя
   async create(dto: CreateProducerCategoryDto): Promise<ProducerCategory> {
     const newCategory = this.producerCategoryRepository.create(dto);
     return await this.producerCategoryRepository.save(newCategory);

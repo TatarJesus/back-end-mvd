@@ -12,24 +12,29 @@ export class CategoriesService {
     private categoriesRepository: Repository<Category>,
   ) {}
 
-  create(createCategoryDto: CreateCategoryDTO) {
+  // Создание категории
+  async create(createCategoryDto: CreateCategoryDTO) {
     const newCategory = this.categoriesRepository.create(createCategoryDto);
-    return this.categoriesRepository.save(newCategory);
+    return await this.categoriesRepository.save(newCategory);
   }
 
-  findAll() {
-    return this.categoriesRepository.find();
+  // Поиск всех категорий
+  async findAll() {
+    return await this.categoriesRepository.find();
   }
 
-  findOne(id: number) {
-    return this.categoriesRepository.findOne({ where: { id: id } });
+  // Поиск определенной категории
+  async findOne(id: number) {
+    return await this.categoriesRepository.findOne({ where: { id: id } });
   }
 
-  update(id: number, updateCategoryDto: UpdateCategoryDTO) {
-    return this.categoriesRepository.update(id, updateCategoryDto);
+  // Обновление определенной категории
+  async update(id: number, updateCategoryDto: UpdateCategoryDTO) {
+    return await this.categoriesRepository.update(id, updateCategoryDto);
   }
 
-  remove(id: number) {
-    return this.categoriesRepository.delete(id);
+  // Удаление определенной категории
+  async remove(id: number) {
+    return await this.categoriesRepository.delete(id);
   }
 }

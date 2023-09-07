@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateContentDTO } from './dto/create-content.dto';
 import { UpdateContentDTO } from './dto/update-content.dto';
-import { Content } from './entities/content.entity';
+import { Content, ContentType } from './entities/content.entity';
 
 @Injectable()
 export class ContentService {
@@ -12,24 +12,50 @@ export class ContentService {
     private contentRepository: Repository<Content>,
   ) {}
 
-  create(createContentDto: CreateContentDTO) {
+  // Создание новости, статьи или промо
+  async create(createContentDto: CreateContentDTO) {
     const newContent = this.contentRepository.create(createContentDto);
-    return this.contentRepository.save(newContent);
+    return await this.contentRepository.save(newContent);
   }
 
-  findAll() {
-    return this.contentRepository.find();
+  // Поиск всех новостей, статей или промо
+  async findAll() {
+    return await this.contentRepository.find();
   }
 
-  findOne(id: number) {
-    return this.contentRepository.findOne({ where: { id: id } });
+  // Поиск всех новостей
+  async findAllNews() {
+    return await this.contentRepository.find({
+      where: { type: ContentType.NEWS },
+    });
   }
 
-  update(id: number, updateContentDto: UpdateContentDTO) {
-    return this.contentRepository.update(id, updateContentDto);
+  // Поиск всех статей
+  async findAllArticle() {
+    return await this.contentRepository.find({
+      where: { type: ContentType.ARTICLE },
+    });
   }
 
-  remove(id: number) {
-    return this.contentRepository.delete(id);
+  // Поиск всех промо
+  async findAllPromo() {
+    return await this.contentRepository.find({
+      where: { type: ContentType.PROMO },
+    });
+  }
+
+  // Поиск определенного контента
+  async findOne(id: number) {
+    return await this.contentRepository.findOne({ where: { id: id } });
+  }
+
+  // Обновление определенного контента
+  async update(id: number, updateContentDto: UpdateContentDTO) {
+    return await this.contentRepository.update(id, updateContentDto);
+  }
+
+  // Удаление определенного контента
+  async remove(id: number) {
+    return await this.contentRepository.delete(id);
   }
 }

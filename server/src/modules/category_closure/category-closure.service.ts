@@ -15,19 +15,19 @@ export class CategoryClosureService {
     private categoriesRepository: Repository<Category>,
   ) {}
 
-  async create(dto: CreateCategoryClosureDto): Promise<CategoryClosure> {
+  // Создание связи предка и потомка категорий
+  async create(dto: CreateCategoryClosureDto) {
     const newClosure = this.categoryClosureRepository.create(dto);
     return await this.categoryClosureRepository.save(newClosure);
   }
 
-  async findAll(): Promise<CategoryClosure[]> {
+  // Поиск всех связей предков и потомков категорий
+  async findAll() {
     return await this.categoryClosureRepository.find();
   }
 
-  async findOne(
-    ancestor_id: number,
-    descendant_id: number,
-  ): Promise<CategoryClosure> {
+  // Поиск определенной связи предка и потомка категорий
+  async findOne(ancestor_id: number, descendant_id: number) {
     const found = await this.categoryClosureRepository.findOne({
       where: {
         ancestor_id: ancestor_id,
@@ -42,6 +42,7 @@ export class CategoryClosureService {
     return found;
   }
 
+  // Поиск подкатегории
   async findAllSubcategory(ancestor_id: number) {
     const category = await this.categoryClosureRepository.find({
       where: { ancestor_id: ancestor_id },
@@ -52,6 +53,7 @@ export class CategoryClosureService {
     return await this.categoriesRepository.findBy({ id: In(idsCategory) });
   }
 
+  // Обновление определенной связи предка и потомка категорий
   async update(
     ancestor_id: number,
     descendant_id: number,
@@ -62,7 +64,8 @@ export class CategoryClosureService {
     return await this.categoryClosureRepository.save(updatedClosure);
   }
 
-  async remove(ancestor_id: number, descendant_id: number): Promise<void> {
+  // Удаление определенной связи предка и потомка категорий
+  async remove(ancestor_id: number, descendant_id: number) {
     const closure = await this.findOne(ancestor_id, descendant_id);
     await this.categoryClosureRepository.remove(closure);
   }

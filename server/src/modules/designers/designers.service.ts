@@ -12,15 +12,18 @@ export class DesignersService {
     private readonly designersRepository: Repository<Designers>,
   ) {}
 
+  // Создание пользователя дизайнера
   async create(createDesignersDto: CreateDesignersDto): Promise<Designers> {
     const designer = this.designersRepository.create(createDesignersDto);
     return await this.designersRepository.save(designer);
   }
 
+  // Поиск всех пользователей дизайнеров
   async findAll(): Promise<Designers[]> {
     return await this.designersRepository.find();
   }
 
+  // Поиск определенного пользователя дизайнера
   async findOne(id: number): Promise<Designers> {
     const designer = await this.designersRepository.findOne({
       where: { id: id },
@@ -31,6 +34,7 @@ export class DesignersService {
     return designer;
   }
 
+  // Обновление данных определенного пользователя дизайнера
   async update(
     id: number,
     updateDesignersDto: UpdateDesignersDto,
@@ -40,6 +44,7 @@ export class DesignersService {
     return this.findOne(id);
   }
 
+  // Удаление определенного пользователя дизайнера
   async remove(id: number): Promise<void> {
     await this.findOne(id);
     await this.designersRepository.delete(id);

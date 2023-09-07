@@ -12,24 +12,29 @@ export class BasicUsersService {
     private usersRepository: Repository<BasicUsers>,
   ) {}
 
-  create(createUserDto: CreateBasicUsersDto) {
+  // Создание пользователя
+  async create(createUserDto: CreateBasicUsersDto) {
     const user = this.usersRepository.create(createUserDto);
-    return this.usersRepository.save(user);
+    return await this.usersRepository.save(user);
   }
 
-  findAll() {
-    return this.usersRepository.find();
+  // Поиск всех пользователей
+  async findAll() {
+    return await this.usersRepository.find();
   }
 
-  findOne(id: number) {
-    return this.usersRepository.findOne({ where: { id: id } });
+  // Поиск определенного пользователя
+  async findOne(id: number) {
+    return await this.usersRepository.findOne({ where: { id: id } });
   }
 
-  update(id: number, updateUserDto: UpdateBasicUsersDto) {
-    return this.usersRepository.update(id, updateUserDto);
+  // Обновление данных о пользователе
+  async update(id: number, updateUserDto: UpdateBasicUsersDto) {
+    return await this.usersRepository.update(id, updateUserDto);
   }
 
-  remove(id: number) {
-    return this.usersRepository.delete(id);
+  // Удаление пользователя
+  async remove(id: number) {
+    return await this.usersRepository.delete(id);
   }
 }
