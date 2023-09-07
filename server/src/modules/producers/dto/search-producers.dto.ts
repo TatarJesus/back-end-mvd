@@ -1,6 +1,6 @@
 export class SearchProducersDto {
   address: string;
-  min_price: number;
-  max_price: number;
+  min_price: string;
+  max_price: string;
   category_name: string;
 }

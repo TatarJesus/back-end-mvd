@@ -31,9 +31,9 @@ export class ProducersController {
     return this.producersService.findOne(+id);
   }
 
-  @Get('/search')
-  findAllSearch(@Body() searchProducersDto: SearchProducersDto) {
-    return this.producersService.search(searchProducersDto);
+  @Get('/search/:address/:min_price/:max_price/:category_name')
+  findAllSearch(@Param() searchProducersDto: SearchProducersDto) {
+    return this.producersService.searchAll(searchProducersDto);
   }
 
   @Patch(':id')
