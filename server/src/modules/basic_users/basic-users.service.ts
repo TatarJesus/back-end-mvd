@@ -35,6 +35,7 @@ export class BasicUsersService {
   }
 
   async createUser(createUserDto: CreateBasicUsersDto) {
+    console.info('createUserDto', createUserDto);
     const user = this.usersRepository.create(createUserDto);
     return user;
   }
