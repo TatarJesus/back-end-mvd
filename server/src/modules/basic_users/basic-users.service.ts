@@ -27,6 +27,7 @@ export class BasicUsersService {
       old_password: hash,
       password_salt: salt,
     });
+    console.info('secret', secret);
     await this.secretsRepository.save(secret);
     return await this.createUser({
       ...createUserDto,
