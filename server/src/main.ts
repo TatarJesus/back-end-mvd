@@ -14,6 +14,10 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
   app.setGlobalPrefix('v1');
   app.enableCors();
+  app.use(cors({
+    credentials: true,
+    origin: true,
+  }))
   await app.listen(8001);
 }
 
