@@ -43,7 +43,7 @@ import { ApiTokenCheckMiddleware } from './common/middleware/api-token-check.mid
         username: configService.get('DB_USERNAME'), // имя пользователя
         password: configService.get('DB_PASSWORD'), // пароль пользователя
         database: configService.get('DB_NAME'), // имя базы данных
-        synchronize: true, // автоматическая синхронизация схемы !!!(только на этапе разработки!)!!!
+        synchronize: false, // автоматическая синхронизация схемы !!!(только на этапе разработки!)!!!
         entities: [__dirname + '/**/*.entity{.js, .ts}'], // пути к сущностям
       }),
 
