@@ -10,14 +10,24 @@ import {
 import { BasicUsersService } from './basic-users.service';
 import { CreateBasicUsersDto } from './dto/create-basic-users.dto';
 import { UpdateBasicUsersDto } from './dto/update-basic-users.dto';
+import { LoginBasicUsersDto } from './dto/login-basic-users.dto';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { BasicUsersEntity } from './entities/basic-users.entity';
 
 @Controller('basic-users')
 export class BasicUsersController {
   constructor(private readonly usersService: BasicUsersService) {}
 
-  @Post()
+  @ApiOperation({ summary: 'Создание пользователя' })
+  @ApiResponse({ status: 200, type: BasicUsersEntity })
+  @Post('/register')
   create(@Body() createUserDto: CreateBasicUsersDto) {
-    return this.usersService.create(createUserDto);
+    return this.usersService.register(createUserDto);
+  }
+
+  @Post('/login')
+  login(@Body() loginBasicUserDto: LoginBasicUsersDto) {
+    return this.usersService.login(loginBasicUserDto);
   }
 
   @Get()

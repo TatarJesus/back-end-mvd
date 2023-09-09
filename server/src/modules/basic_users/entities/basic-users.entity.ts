@@ -5,10 +5,10 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Secrets } from '../../secrets/entities/secrets.entity';
+import { SecretsEntity } from '../../secrets/entities/secrets.entity';
 
 @Entity('basic_users')
-export class BasicUsers {
+export class BasicUsersEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -30,7 +30,6 @@ export class BasicUsers {
   @Column({ nullable: true })
   visits: number;
 
-  @ManyToOne(() => Secrets)
-  @JoinColumn({ name: 'secret_id' })
-  secret: Secrets;
+  @Column({ nullable: false })
+  secret_id: number;
 }

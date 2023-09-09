@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdminsModule } from './modules/admins/admins.module';
+// import { AuthModule } from './modules/auth/auth.module';
 import { BasicUsersModule } from './modules/basic_users/basic-users.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { CategoryCardsModule } from './modules/category_cards/category_cards.module';
@@ -52,6 +53,7 @@ import { ApiTokenCheckMiddleware } from './common/middleware/api-token-check.mid
 
     // Импорт других модулей приложения
     AdminsModule,
+    // AuthModule,
     BasicUsersModule,
     CategoriesModule,
     CategoryCardsModule,

@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Secrets } from './entities/secrets.entity';
+import { SecretsEntity } from './entities/secrets.entity';
 import { CreateSecretsDto } from './dto/create-secrets.dto';
 import { UpdateSecretsDto } from './dto/update-secrets.dto';
 
 @Injectable()
 export class SecretsService {
   constructor(
-    @InjectRepository(Secrets)
-    private secretsRepository: Repository<Secrets>,
+    @InjectRepository(SecretsEntity)
+    private secretsRepository: Repository<SecretsEntity>,
   ) {}
 
   // Добавление пароля
