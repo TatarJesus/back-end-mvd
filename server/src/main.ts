@@ -4,9 +4,6 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors({
-    origin: '*',
-  });
   const config = new DocumentBuilder()
     .setTitle('Mebel V Dom API')
     .setDescription('Description')
@@ -15,6 +12,10 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+  app.enableCors({
+    origin: ['https://mebel.steio.ru'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  });
   app.setGlobalPrefix('v1');
   await app.listen(8001);
 }
