@@ -36,7 +36,7 @@ export class BasicUsersService {
 
   async createUser(createUserDto: CreateBasicUsersDto) {
     const user = this.usersRepository.create(createUserDto);
-    return await this.usersRepository.save(user);
+    return user;
   }
 
   async login(loginBasicUserDto: LoginBasicUsersDto) {
